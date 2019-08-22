@@ -15,12 +15,6 @@ mongoose.connect(process.env.MONGODB_URI, {
 .then(_=>{console.log("Connected to MongoDB")})
 .catch(err=>console.log(err))
 
-router.post('/', (req,res)=>{
-    let user = new User(req.body)
-    user.save()
-    res.send('Post request received')
-})
-
 router.get('/users', (req,res)=>{
     let {amount,name} = req.query
     amount = +amount // coercing all amounts to numbers (or NaN) for security and practical reasons
@@ -35,8 +29,7 @@ router.get('/users', (req,res)=>{
 })
 
 router.get('/users/:id', (req,res)=>{
-    const {id} = req.params
-    id = cleanInput(id)
+    const id = cleanInput(req.params.id)
     User.findOne(
         {_id: id},
         {name: 1 }, //restricting the output to names and ids, since that's what will be consumed by the client
@@ -46,8 +39,7 @@ router.get('/users/:id', (req,res)=>{
 })
 
 router.get('/users/:id/information', (req,res)=>{
-    const {id} = req.params
-    id = cleanInput(id)
+    const id = cleanInput(req.params.id)
     User.findOne({_id: id})
     .then(user=>res.json(user))
     .catch(err=>res.json({'message':err}))
