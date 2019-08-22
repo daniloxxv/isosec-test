@@ -6,14 +6,6 @@
   width: 100%;
 }
 
-.userRow {
-  cursor:pointer;
-}
-
-a {
-  cursor:pointer;
-}
-
 table {
   border: 0.5px;
   border-collapse: collapse;  
@@ -58,6 +50,7 @@ tbody {
 }
 
 .userRow {
+  cursor:pointer;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -72,6 +65,15 @@ tbody {
 
 .nameCell {
   min-width: 40%;
+}
+
+.tableButton {
+  box-shadow: none;
+  border: none;
+  background-color: #ffffff;
+  cursor:pointer;
+  font-weight: bold;
+  font-size: 1em;
 }
 
 .searchBar {

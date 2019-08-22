@@ -27,47 +27,15 @@ function App() {
       .catch(err => setErrorMessage('The server was unable to process your request; please try again later'))
   }
 
-  const debouncedSearch = debounce(searchRequest,200)
-
-  const searchHandler = e => setSearchQuery(e.target.value)
-
-  const showDetail = () => setDisplayDetail(!displayDetail)
-
-  const getDetail = id => {
-    axios.get(`${serverUrl}/users/${id}/information`)
-    .then(user=>{
-      setErrorMessage('')
-      setUserDetail(user.data)
-      showDetail()
-    })
-    .catch(err=>setErrorMessage('The server was unable to process request; please try again later'))
-  }
-
-  const sortUsers = term => {
-      const sortedList = [...userList].sort((a,b)=>{
-      switch (term){
-        case 'First Name':
-          return a.name.replace(/\w+$/g,"").localeCompare(b.name.replace(/\w+$/g,""))
-        case 'Last Name':
-          return a.name.replace(/^\w+/g,"").localeCompare(b.name.replace(/^\w+/g,""))
-        case 'Id':
-          return a.index - b.index
-        default:
-          return 0
-      }
-    })
-    setUserList(sortedList)
-  } 
-
-  useEffect(()=>{debouncedSearch(searchQuery)},[searchQuery])
+  useEffect(()=>{debounce(searchRequest,200)(searchQuery)},[searchQuery])
 
   return (
     <div className="App">
         <h1>User Management</h1>
-        <SearchBar searchHandler={searchHandler}/>
+        <SearchBar setSearchQuery={setSearchQuery}/>
       {displayDetail ? 
-        <UserDetail user={userDetail} showTable={showDetail} errorMessage={errorMessage}/> : 
-        <UserTable userList={userList} getDetail={getDetail} setUserList={setUserList} errorMessage={errorMessage}/>
+        <UserDetail user={userDetail} setDisplayDetail={setDisplayDetail} errorMessage={errorMessage}/> : 
+        <UserTable setUserDetail={setUserDetail} setDisplayDetail={setDisplayDetail} userList={userList} setUserList={setUserList} errorMessage={errorMessage} setErrorMessage={setErrorMessage}/>
       }
     </div>
   );

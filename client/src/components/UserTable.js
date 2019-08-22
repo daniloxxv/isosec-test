@@ -1,20 +1,48 @@
 import React from 'react'
+import axios from 'axios';
+import {serverUrl} from '../config'
 
-function UserTable(props){
-    const {userList,getDetail,sortUsers, errorMessage} = props
+function UserTable({userList,setUserDetail,setUserList,setDisplayDetail,setErrorMessage,errorMessage}){
+
+    const sortUsers = term => {
+        const sortedList = [...userList].sort((a,b)=>{
+        switch (term){
+          case 'First Name':
+            return a.name.replace(/\w+$/g,"").localeCompare(b.name.replace(/\w+$/g,""))
+          case 'Last Name':
+            return a.name.replace(/^\w+/g,"").localeCompare(b.name.replace(/^\w+/g,""))
+          case 'Id':
+            return a.index - b.index
+          default:
+            return 0
+        }
+      })
+      setUserList(sortedList)
+    }
+    
+    const getDetail = id => {
+        axios.get(`${serverUrl}/users/${id}/information`)
+        .then(user=>{
+            setErrorMessage('')
+            setUserDetail(user.data)
+            setDisplayDetail(true)
+        })
+        .catch(err=>setErrorMessage('The server was unable to process request; please try again later'))
+    }
+
 
     return (
             <table className='userList'>
                 <thead>
                     <tr className='headerRow'>
                         <th className='idCell'>
-                            <a onClick={()=>sortUsers('Id')}>Id</a>
+                            <button className='tableButton' onClick={()=>sortUsers('Id')}>Id</button>
                         </th>
                         <th className='nameCell'>
-                            <a onClick={()=>sortUsers('First Name')}>First Name</a>
+                            <button className='tableButton' onClick={()=>sortUsers('First Name')}>First Name</button>
                         </th>
                         <th className='nameCell'>
-                            <a onClick={()=>sortUsers('Last Name')}>Last Name</a>
+                            <button className='tableButton' onClick={()=>sortUsers('Last Name')}>Last Name</button>
                         </th>
                     </tr>
                 </thead>

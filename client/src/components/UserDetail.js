@@ -1,7 +1,7 @@
 import React from 'react'
 
 function UserDetail(props){
-    const {user,showTable, errorMessage} = props
+    const {user,setDisplayDetail, errorMessage} = props
     return (!errorMessage ?
             <table className='userCard'>
                 <thead>
@@ -10,7 +10,7 @@ function UserDetail(props){
                             {user.name}
                         </th>
                         <th className='userpicture'>
-                            <img src={user.picture}/>
+                            <img src={user.picture}alt={user.name}/>
                         </th>
                     </tr>
                 </thead>
@@ -45,7 +45,7 @@ function UserDetail(props){
                             <strong>Friends: </strong>{user.friends.map(el=>el.name).join(", ")}
                         </td>
                         <td>
-                            <button onClick={showTable}>Return to table</button>
+                            <button onClick={()=>setDisplayDetail(false)}>Return to table</button>
                         </td>
                     </tr>
                 </tbody>
