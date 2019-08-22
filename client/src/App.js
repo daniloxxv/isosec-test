@@ -63,10 +63,11 @@ function App() {
 
   return (
     <div className="App">
+        <h1>User Management</h1>
         <SearchBar searchHandler={searchHandler}/>
       {displayDetail ? 
         <UserDetail user={userDetail} showTable={showDetail} errorMessage={errorMessage}/> : 
-        <UserTable userList={userList} getDetail={getDetail} sortUsers={sortUsers} errorMessage={errorMessage}/>
+        <UserTable userList={userList} getDetail={getDetail} setUserList={setUserList} errorMessage={errorMessage}/>
       }
     </div>
   );

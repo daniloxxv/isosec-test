@@ -1,8 +1,8 @@
 import React from 'react'
 
 function UserDetail(props){
-    const {user,showTable} = props
-    return (
+    const {user,showTable, errorMessage} = props
+    return (!errorMessage ?
             <table className='userCard'>
                 <thead>
                     <tr>
@@ -50,7 +50,16 @@ function UserDetail(props){
                     </tr>
                 </tbody>
             </table>
-            
+            :
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                          {errorMessage}
+                        </th>
+                    </tr>
+                </thead>
+            </table>
     )
 }
 
