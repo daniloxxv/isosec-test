@@ -5,56 +5,58 @@
   width: 100%;
 }
 
+.userRow {
+  cursor:pointer;
+}
+
 a {
   cursor:pointer;
 }
 
 table {
-  display: flex;
-  flex-wrap: wrap;
-  border: 1px;
+  border: 0.5px;
+  border-collapse: collapse;  
   border-style: solid;
   border-color: #E0DFE4;
   width: 100%;
 }
+
 thead {
-  display: flex;
-  flex-wrap: wrap;
   width: 100%;
 }
 
 tbody {
-  display: flex;
-  flex-wrap: wrap;
   width: 100%;
 }
+
 
 .userList {
   width: 100%;
 }
+
 .headerRow{
-  min-width: 100%;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
-  border-bottom: 3px;
+  justify-content: space-around;
+  border-bottom: 1.5px;
   border-bottom-style: solid;
   border-color: #E0DFE4;
 }
 
-td {
-  border: 1px;
-  border-color: #E0DFE4;
-  border-style: solid;
-}
 
 .noUsers {
-  min-width: 80%;
+  width: 100%;
 }
+
 .userRow {
-  min-width: 100%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
 }
+.userRow:hover{
+  background-color: #E0DFE4;
+}
+
 .idCell {
   min-width: 20%;
 }

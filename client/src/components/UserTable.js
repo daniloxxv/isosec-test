@@ -21,8 +21,7 @@ function UserTable(props){
                 <tbody>
                     {userList.length ? userList.map(el=>{
                     return (
-                    <tr key={el._id} className='userRow'>
-                        <a onClick={()=>getDetail(el._id)} className='userRow'>
+                    <tr key={el._id} onClick={()=>getDetail(el._id)} className='userRow'>
                             <td className='idCell'>
                                 {el.index}
                             </td>
@@ -32,13 +31,18 @@ function UserTable(props){
                             <td className='nameCell'>
                                 {el.name.replace(/^\w+/g,"")}
                             </td> 
-                        </a>                       
                     </tr>)
                 
                 }) : <tr className='userRow'>
-                        <td className='noUsers'>
-                            No users found
-                        </td>
+                        <td className='idCell'>
+                                No users found
+                            </td>
+                            <td className='nameCell'>
+                                -
+                            </td>
+                            <td className='nameCell'>
+                                -
+                            </td> 
                     </tr>}
                 </tbody>
             </table>
