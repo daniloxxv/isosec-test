@@ -22,20 +22,34 @@ function App() {
 
   const debouncedSearch = debounce(searchRequest,250)
 
-  const searchHandler = e => {
-    debouncedSearch(e.target.value)
-  }
+  const searchHandler = e => debouncedSearch(e.target.value)
+
   const showDetail = () => setDisplayDetail(!displayDetail)
 
   const getDetail = id => {
     axios.get(`http://localhost:3001/users/${id}/information`)
     .then(user=>{
       setUserDetail(user.data)
-      console.log(user.data)
       showDetail()
     })
     .catch(err=>console.log(err))
   }
+
+  const sortUsers = term => {
+      const sortedList = [...userList].sort((a,b)=>{
+      switch (term){
+        case 'First Name':
+          return a.name.replace(/\w+$/g,"").localeCompare(b.name.replace(/\w+$/g,""))
+        case 'Last Name':
+          return a.name.replace(/^\w+/g,"").localeCompare(b.name.replace(/^\w+/g,""))
+        case 'Id':
+          return a.index - b.index
+        default:
+          return 0
+      }
+    })
+    setUserList(sortedList)
+  } 
 
 
   return (
@@ -43,7 +57,7 @@ function App() {
       <SearchBar searchHandler={searchHandler}/>
       {displayDetail ? 
         <UserDetail user={userDetail} showTable={showDetail}/> : 
-        <UserTable userList={userList} getDetail={getDetail} showTable={showDetail}/>
+        <UserTable userList={userList} getDetail={getDetail} sortUsers={sortUsers}/>
       }
     </div>
   );

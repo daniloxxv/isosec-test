@@ -1,33 +1,75 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
-.App-link {
-  color: #61dafb;
+a {
+  cursor:pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+table {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px;
+  border-style: solid;
+  border-color: #E0DFE4;
+  width: 100%;
+}
+thead {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+tbody {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.userList {
+  width: 100%;
+}
+.headerRow{
+  min-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 3px;
+  border-bottom-style: solid;
+  border-color: #E0DFE4;
+}
+
+td {
+  border: 1px;
+  border-color: #E0DFE4;
+  border-style: solid;
+}
+
+.noUsers {
+  min-width: 80%;
+}
+.userRow {
+  min-width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.idCell {
+  min-width: 20%;
+}
+
+.nameCell {
+  min-width: 40%;
+}
+
+.searchBar {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  margin: 20px;
+}
+
+.input:focus::-webkit-input-placeholder {
+    color: transparent;
 }
