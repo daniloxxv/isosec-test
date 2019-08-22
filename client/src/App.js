@@ -5,19 +5,25 @@ import './App.css';
 import SearchBar from './components/SearchBar'
 import UserTable from './components/UserTable'
 import UserDetail from './components/UserDetail'
+import {serverUrl} from './config'
 
 function App() {
   const [userList, setUserList] = useState([])
   const [userDetail,setUserDetail] = useState({})
   const [displayDetail,setDisplayDetail] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
 
   const searchRequest = query => {
-    if (!query || query.length < 2) return;
-    axios.get(`http://localhost:3001/users?name=${query}`)
+    setErrorMessage('')
+    if (!query || query.length < 2) {
+      setUserList([])
+      return
+    }
+    axios.get(`${serverUrl}/users?name=${query}`)
       .then(users => {
         setUserList(users.data)
       })
-      .catch(err => console.log(err))
+      .catch(err => setErrorMessage('The server was unable to process your request; please try again later'))
   }
 
   const debouncedSearch = debounce(searchRequest,250)
@@ -27,12 +33,13 @@ function App() {
   const showDetail = () => setDisplayDetail(!displayDetail)
 
   const getDetail = id => {
-    axios.get(`http://localhost:3001/users/${id}/information`)
+    axios.get(`${serverUrl}/users/${id}/information`)
     .then(user=>{
+      setErrorMessage('')
       setUserDetail(user.data)
       showDetail()
     })
-    .catch(err=>console.log(err))
+    .catch(err=>setErrorMessage('The server was unable to process request; please try again later'))
   }
 
   const sortUsers = term => {
@@ -56,8 +63,8 @@ function App() {
     <div className="App">
       <SearchBar searchHandler={searchHandler}/>
       {displayDetail ? 
-        <UserDetail user={userDetail} showTable={showDetail}/> : 
-        <UserTable userList={userList} getDetail={getDetail} sortUsers={sortUsers}/>
+        <UserDetail user={userDetail} showTable={showDetail} errorMessage={errorMessage}/> : 
+        <UserTable userList={userList} getDetail={getDetail} sortUsers={sortUsers} errorMessage={errorMessage}/>
       }
     </div>
   );

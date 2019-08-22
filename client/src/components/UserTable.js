@@ -1,7 +1,7 @@
 import React from 'react'
 
 function UserTable(props){
-    const {userList,getDetail,sortUsers} = props
+    const {userList,getDetail,sortUsers, errorMessage} = props
 
     return (
             <table className='userList'>
@@ -19,7 +19,20 @@ function UserTable(props){
                     </tr>
                 </thead>
                 <tbody>
-                    {userList.length ? userList.map(el=>{
+                    {errorMessage ? 
+                    <tr className='userRow'>
+                    <td className='idCell'>
+                            
+                        </td>
+                        <td className='nameCell'>
+                            {errorMessage}
+                        </td>
+                        <td className='nameCell'>
+                            
+                        </td> 
+                </tr>
+                    :    
+                    userList.length ? userList.map(el=>{
                     return (
                     <tr key={el._id} onClick={()=>getDetail(el._id)} className='userRow'>
                             <td className='idCell'>

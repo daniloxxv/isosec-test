@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express       = require('express')
 const server        = express()
 const router        = require('./routes')
@@ -8,8 +9,8 @@ server.use(bodyParser.json())
 
 server.use(cors({
     credentials: true,
-    origin: 'http://localhost:3000'
+    origin: process.env.CLIENT
 }))
 
 server.use('/',router)
-server.listen(3001)
+server.listen(process.env.PORT)
