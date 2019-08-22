@@ -21,7 +21,7 @@ function UserTable({userList,setUserDetail,setUserList,setDisplayDetail,setError
     }
     
     const getDetail = id => {
-        axios.get(`${serverUrl}/users/${id}/information`)
+        axios.get(`${serverUrl}/api/users/${id}/information`)
         .then(user=>{
             setErrorMessage('')
             setUserDetail(user.data)

@@ -20,7 +20,7 @@ function App() {
       setUserList([])
       return
     }
-    axios.get(`${serverUrl}/users?name=${query}`)
+    axios.get(`${serverUrl}/api/users?name=${query}`)
       .then(users => {
         setUserList(users.data)
       })
