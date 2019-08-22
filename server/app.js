@@ -14,3 +14,5 @@ server.use(cors({
 
 server.use('/',router)
 server.listen(process.env.PORT)
+
+module.exports = server
