@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import debounce from 'lodash.debounce'
 import './App.css';
@@ -10,6 +10,7 @@ import {serverUrl} from './config'
 function App() {
   const [userList, setUserList] = useState([])
   const [userDetail,setUserDetail] = useState({})
+  const [searchQuery, setSearchQuery] = useState('')
   const [displayDetail,setDisplayDetail] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
 
@@ -26,9 +27,9 @@ function App() {
       .catch(err => setErrorMessage('The server was unable to process your request; please try again later'))
   }
 
-  const debouncedSearch = debounce(searchRequest,250)
+  const debouncedSearch = debounce(searchRequest,200)
 
-  const searchHandler = e => debouncedSearch(e.target.value)
+  const searchHandler = e => setSearchQuery(e.target.value)
 
   const showDetail = () => setDisplayDetail(!displayDetail)
 
@@ -58,10 +59,11 @@ function App() {
     setUserList(sortedList)
   } 
 
+  useEffect(()=>{debouncedSearch(searchQuery)},[searchQuery])
 
   return (
     <div className="App">
-      <SearchBar searchHandler={searchHandler}/>
+        <SearchBar searchHandler={searchHandler}/>
       {displayDetail ? 
         <UserDetail user={userDetail} showTable={showDetail} errorMessage={errorMessage}/> : 
         <UserTable userList={userList} getDetail={getDetail} sortUsers={sortUsers} errorMessage={errorMessage}/>

@@ -3,25 +3,54 @@ import React from 'react'
 function UserDetail(props){
     const {user,showTable} = props
     return (
-        <section className='userDetail'>
-            <h2>
-                {user.name}
-            </h2>
-            <img src={user.picture}/>
-            <h3><strong>Gender:</strong>{user.gender}</h3>
-            <h3><strong>Age:</strong>{user.age}</h3>
-            <h3><strong>Email:</strong>{user.email}</h3>
-            <h3><strong>Phone:</strong>{user.phone}</h3>
-            <h3><strong>Address:</strong>{user.address}</h3>
-            <h3><strong>Registered:</strong>{user.registered}</h3>
-            <h3><strong>Friends:</strong></h3>
-            <ul>
-                {user.friends.map((el,i)=>{
-                    return (<li key={i}><h4>{el.name}</h4></li>)
-                })}
-            </ul>
-            <button onClick={showTable}>Return to table</button>
-        </section>
+            <table className='userCard'>
+                <thead>
+                    <tr>
+                        <th className='username'>
+                            {user.name}
+                        </th>
+                        <th className='userpicture'>
+                            <img src={user.picture}/>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr >
+                        <td>
+                            <strong>Gender: </strong>{user.gender}
+                        </td>
+                        <td>
+                            <strong>Age: </strong>{user.age}
+                        </td>
+                    </tr>
+                    <tr >
+                        <td>
+                            <strong>Email: </strong>{user.email}
+                        </td>
+                        <td>
+                            <strong>Phone: </strong>{user.phone}
+                        </td>
+                    </tr>
+
+                    <tr >
+                        <td>
+                            <strong>Address: </strong>{user.address}
+                        </td>
+                        <td>
+                            <strong>Registered: </strong>{user.registered}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td className='userfriends'>
+                            <strong>Friends: </strong>{user.friends.map(el=>el.name).join(", ")}
+                        </td>
+                        <td>
+                            <button onClick={showTable}>Return to table</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
     )
 }
 

@@ -2,6 +2,7 @@
   text-align: center;
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-end;
   width: 100%;
 }
 
@@ -29,10 +30,14 @@ tbody {
   width: 100%;
 }
 
-
 .userList {
   width: 100%;
 }
+
+.username{
+  font-size: 1.5rem;
+}
+
 
 .headerRow{
   width: 100%;
@@ -46,6 +51,10 @@ tbody {
 
 .noUsers {
   width: 100%;
+}
+
+.userCard{
+  text-align: left;
 }
 
 .userRow {
@@ -67,7 +76,6 @@ tbody {
 
 .searchBar {
   display: flex;
-  width: 100%;
   justify-content: flex-end;
   margin-bottom: 20px;
 }
