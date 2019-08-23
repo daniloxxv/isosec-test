@@ -15,6 +15,7 @@ These are the steps to run the application:
 - Node.js
 - Express
 - React (with Context & Hooks)
+- Axios
 - Lodash.debounce (for optional challenge 3 - Backend & Frontend integration)
 - Mocha & Chai (for unit tests)
 
