@@ -40,7 +40,6 @@ tbody {
   border-color: #E0DFE4;
 }
 
-
 .noUsers {
   width: 100%;
 }
@@ -69,11 +68,26 @@ tbody {
 
 .tableButton {
   box-shadow: none;
+  padding-left: 30px;
+  padding-right: 30px;
   border: none;
   background-color: #ffffff;
   cursor:pointer;
   font-weight: bold;
   font-size: 1em;
+}
+
+.hoverText{
+  font-weight: 300;
+  color: rgb(97, 97, 99);
+  display:none;
+}
+.idCell:hover .hoverText {
+  display: inline;
+}
+
+.nameCell:hover .hoverText {
+  display: inline;
 }
 
 .searchBar {

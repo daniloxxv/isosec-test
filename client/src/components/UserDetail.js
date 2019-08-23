@@ -1,48 +1,50 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import {Context} from '../Wrapper'
 
-function UserDetail(props){
-    const {user,setDisplayDetail, errorMessage} = props
+function UserDetail(){
+    const {userDetail,setDisplayDetail, errorMessage} = useContext(Context)
+    
     return (!errorMessage ?
             <table className='userCard'>
                 <thead>
                     <tr>
                         <th className='username'>
-                            {user.name}
+                            {userDetail.name}
                         </th>
                         <th className='userpicture'>
-                            <img src={user.picture}alt={user.name}/>
+                            <img src={userDetail.picture}alt={userDetail.name}/>
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr >
                         <td>
-                            <strong>Gender: </strong>{user.gender}
+                            <strong>Gender: </strong>{userDetail.gender}
                         </td>
                         <td>
-                            <strong>Age: </strong>{user.age}
+                            <strong>Age: </strong>{userDetail.age}
                         </td>
                     </tr>
                     <tr >
                         <td>
-                            <strong>Email: </strong>{user.email}
+                            <strong>Email: </strong>{userDetail.email}
                         </td>
                         <td>
-                            <strong>Phone: </strong>{user.phone}
+                            <strong>Phone: </strong>{userDetail.phone}
                         </td>
                     </tr>
 
                     <tr >
                         <td>
-                            <strong>Address: </strong>{user.address}
+                            <strong>Address: </strong>{userDetail.address}
                         </td>
                         <td>
-                            <strong>Registered: </strong>{user.registered}
+                            <strong>Registered: </strong>{userDetail.registered}
                         </td>
                     </tr>
                     <tr>
                         <td className='userfriends'>
-                            <strong>Friends: </strong>{user.friends.map(el=>el.name).join(", ")}
+                            <strong>Friends: </strong>{userDetail.friends.map(el=>el.name).join(", ")}
                         </td>
                         <td>
                             <button onClick={()=>setDisplayDetail(false)}>Return to table</button>

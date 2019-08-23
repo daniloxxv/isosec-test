@@ -1,48 +1,21 @@
-import React from 'react'
-import axios from 'axios';
-import {serverUrl} from '../config'
+import React, {useContext} from 'react'
+import {Context} from '../Wrapper'
 
-function UserTable({userList,setUserDetail,setUserList,setDisplayDetail,setErrorMessage,errorMessage}){
-
-    const sortUsers = term => {
-        const sortedList = [...userList].sort((a,b)=>{
-        switch (term){
-          case 'First Name':
-            return a.name.replace(/\w+$/g,"").localeCompare(b.name.replace(/\w+$/g,""))
-          case 'Last Name':
-            return a.name.replace(/^\w+/g,"").localeCompare(b.name.replace(/^\w+/g,""))
-          case 'Id':
-            return a.index - b.index
-          default:
-            return 0
-        }
-      })
-      setUserList(sortedList)
-    }
+function UserTable(){
+    const {userList,sortUsers,getDetail,errorMessage} = useContext(Context)
     
-    const getDetail = id => {
-        axios.get(`${serverUrl}/api/users/${id}/information`)
-        .then(user=>{
-            setErrorMessage('')
-            setUserDetail(user.data)
-            setDisplayDetail(true)
-        })
-        .catch(err=>setErrorMessage('The server was unable to process request; please try again later'))
-    }
-
-
     return (
             <table className='userList'>
                 <thead>
                     <tr className='headerRow'>
                         <th className='idCell'>
-                            <button className='tableButton' onClick={()=>sortUsers('Id')}>Id</button>
+                            <small className='hoverText'>Sort by</small><button className='tableButton' onClick={()=>sortUsers('Id')}>Id</button>
                         </th>
                         <th className='nameCell'>
-                            <button className='tableButton' onClick={()=>sortUsers('First Name')}>First Name</button>
+                            <small className='hoverText'>Sort by</small><button className='tableButton' onClick={()=>sortUsers('First Name')}>First Name</button>
                         </th>
                         <th className='nameCell'>
-                            <button className='tableButton' onClick={()=>sortUsers('Last Name')}>Last Name</button>
+                            <small className='hoverText'>Sort by</small><button className='tableButton' onClick={()=>sortUsers('Last Name')}>Last Name</button>
                         </th>
                     </tr>
                 </thead>
