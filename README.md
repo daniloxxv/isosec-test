@@ -18,9 +18,6 @@ These are the steps to run the application:
 - Lodash.debounce (for optional challenge 3 - Backend & Frontend integration)
 - Mocha & Chai (for unit tests)
 
-## Features:
-
-
 ### Note for the reviewer:
 
 The environment variables are included in this repository for the purposes of allowing the application to be easily viewed; I promise I would not do this in production. ;)
