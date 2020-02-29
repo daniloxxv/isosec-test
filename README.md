@@ -16,9 +16,5 @@ These are the steps to run the application:
 - Express
 - React (with Context & Hooks)
 - Axios
-- Lodash.debounce (for optional challenge 3 - Backend & Frontend integration)
+- Lodash (for optional challenge 3 - Backend & Frontend integration)
 - Mocha & Chai (for unit tests)
-
-### Note to the reviewer:
-
-The environment variables are included in this repository for the purposes of allowing the application to be easily viewed; I promise I would not do this in production. ;)
